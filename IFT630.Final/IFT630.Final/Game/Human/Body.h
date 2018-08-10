@@ -43,6 +43,9 @@ namespace Human
         const float MIN_NUTRIENT_LEVEL = 0.05f;
         const float MAX_NUTRIENT_LEVEL = 1.f;
         const float OPTIMAL_NUTRIENT_LEVEL = 0.5f;
+
+		const float MAX_SHIT_LEVEL = 1.f;
+		const float OPTIMAL_SHIT_LEVEL = 0.75f;
     };
 
     struct BodyInfo
@@ -60,6 +63,9 @@ namespace Human
         // Body
         AtomicFloat waterLevel = BodySettings::OPTIMAL_WATER_LEVEL;
         AtomicFloat nutrientLevel = BodySettings::OPTIMAL_NUTRIENT_LEVEL;
+
+		//Intestine
+		AtomicFloat shitLevel = 0.5f;
     };
 
     class Body

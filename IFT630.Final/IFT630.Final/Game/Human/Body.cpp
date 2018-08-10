@@ -70,7 +70,7 @@ namespace Human
 
         if (elapsedSeconds > 1.f) // 1 update / second
         {
-            m_infos.oxygenLevel -= 0.002f;
+            m_infos.oxygenLevel -= 0.002f;			
             elapsedSeconds = 0.f;
         }
 

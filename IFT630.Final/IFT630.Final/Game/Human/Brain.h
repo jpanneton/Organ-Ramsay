@@ -40,5 +40,7 @@ namespace Human
     private:
         bool updateHeart(float fps);
         bool updateLungs(float fps);
+	    bool updateStomach(float fps);
+	    bool updateIntestine(float fps);
     };
 }
