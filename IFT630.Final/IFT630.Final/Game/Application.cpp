@@ -72,12 +72,6 @@ void Application::processInput()
 
 		switch (event.type)
 		{
-		case sf::Event::GainedFocus:
-			m_updateGame = true;
-			break;
-		case sf::Event::LostFocus:
-			m_updateGame = false;
-			break;
 		case sf::Event::Closed:
 			m_window.close();
 			break;

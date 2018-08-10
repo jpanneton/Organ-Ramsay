@@ -9,6 +9,7 @@ namespace Human
     {
         m_sprite.setTexture(body.getContext().textures->get(TexturesID::HumanStomach));
         m_sprite.setColor(sf::Color(250, 135, 120));
+		m_sprite.setPosition(371.f, 495.f);
     }
 
     void Stomach::update(float fps)
