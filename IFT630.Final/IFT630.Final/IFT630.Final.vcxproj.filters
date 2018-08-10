@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{233504d1-751a-4ee0-9363-4a3f857aedcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{49f88d1f-f96a-4151-b8a5-0e29e3b25911}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GUI">
+      <UniqueIdentifier>{45f58800-16ad-4227-9833-5bacdb58ec94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Utilities">
+      <UniqueIdentifier>{0babd848-4a9f-4b6e-99bb-e90d0c53778c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\States">
+      <UniqueIdentifier>{d3b21c2e-bfc4-41d0-886d-9a512ae55e2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Human">
+      <UniqueIdentifier>{57f984dc-66d2-4a77-90fb-37a84e722ff8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\States">
+      <UniqueIdentifier>{fe3452b5-4810-4fed-b05c-2da55b0d18d1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Engine\GUI\Button.cpp">
+      <Filter>Engine\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\GUI\Component.cpp">
+      <Filter>Engine\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\GUI\Container.cpp">
+      <Filter>Engine\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\GUI\Label.cpp">
+      <Filter>Engine\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Application.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\World.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\States\GameState.cpp">
+      <Filter>Game\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\States\PauseState.cpp">
+      <Filter>Game\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Utilities\Utilities.cpp">
+      <Filter>Engine\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Human\Body.cpp">
+      <Filter>Game\Human</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Human\Brain.cpp">
+      <Filter>Game\Human</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Human\Heart.cpp">
+      <Filter>Game\Human</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Human\Lungs.cpp">
+      <Filter>Game\Human</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Human\Organ.cpp">
+      <Filter>Game\Human</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ThreadSignaler.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Human\Stomach.cpp">
+      <Filter>Game\Human</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Human\Intestine.cpp">
+      <Filter>Game\Human</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Human\Liver.cpp">
+      <Filter>Game\Human</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\States\State.cpp">
+      <Filter>Engine\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\States\StateStack.cpp">
+      <Filter>Engine\States</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine\BaseTypes.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ResourceHolder.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Utilities\Angle.h">
+      <Filter>Engine\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Utilities\Math.h">
+      <Filter>Engine\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\GUI\Button.h">
+      <Filter>Engine\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\GUI\Component.h">
+      <Filter>Engine\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\GUI\Container.h">
+      <Filter>Engine\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\GUI\Label.h">
+      <Filter>Engine\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Application.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ResourceIdentifiers.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\World.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\States\GameState.h">
+      <Filter>Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\States\PauseState.h">
+      <Filter>Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\States\StateIdentifiers.h">
+      <Filter>Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Utilities\Utilities.h">
+      <Filter>Engine\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Human\Body.h">
+      <Filter>Game\Human</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Human\Brain.h">
+      <Filter>Game\Human</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Human\Heart.h">
+      <Filter>Game\Human</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Human\Lungs.h">
+      <Filter>Game\Human</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Human\Organ.h">
+      <Filter>Game\Human</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ThreadSignaler.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Human\OrganIdentifiers.h">
+      <Filter>Game\Human</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Human\Stomach.h">
+      <Filter>Game\Human</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Human\Intestine.h">
+      <Filter>Game\Human</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Human\Liver.h">
+      <Filter>Game\Human</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\AtomicNumber.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\States\State.h">
+      <Filter>Engine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\States\StateStack.h">
+      <Filter>Engine\States</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Engine\ResourceHolder.inl">
+      <Filter>Engine</Filter>
+    </None>
+  </ItemGroup>
+</Project>

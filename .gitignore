@@ -1,28 +1,8 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# Folders
+IFT630.Final/.vs/
+IFT630.Final/IFT630.Final/Build
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
+# Solution Build
 *.exe
-*.out
-*.app
+*.ilk
+*.pdb
