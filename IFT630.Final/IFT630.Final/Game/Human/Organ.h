@@ -9,6 +9,7 @@
 namespace Human
 {
     class Body;
+
     class Organ
     {
     public:
@@ -24,7 +25,9 @@ namespace Human
         void shutdown();
 
     protected:
+		static void sleep(long long duration);
         virtual void run() = 0;
+
         Body& m_body;
         ThreadSignaler m_signaler;
         long long m_handicap;

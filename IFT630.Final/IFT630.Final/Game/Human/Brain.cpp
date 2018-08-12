@@ -2,7 +2,9 @@
 #include "Engine/Utilities/Math.h"
 #include "Game/Human/Body.h"
 #include "Game/Human/OrganIdentifiers.h"
+#include <SFML/Graphics/RenderWindow.hpp>
 #include <chrono>
+#include <iostream>
 
 namespace Human
 {
@@ -73,18 +75,7 @@ namespace Human
 
 	bool Brain::updateStomach(float fps)
 	{
-
 		bool organTriggered = false;
-
-		const float nutrimentLevelDelta = m_body.getInfo().nutrientLevel - BodySettings::OPTIMAL_NUTRIENT_LEVEL;
-		if (nutrimentLevelDelta < 0.f)
-		{
-			//A changer pour le hapiness;
-		}
-		else if (nutrimentLevelDelta > 0.f )
-		{
-			//a changer pour quelque chose quand trop plein;
-		}
 
 		if (m_body.getInfo().nutrientLevel < BodySettings::MIN_NUTRIENT_LEVEL)
 		{
@@ -101,15 +92,7 @@ namespace Human
 
 	bool Brain::updateIntestine(float fps)
 	{
-
 		bool organTriggered = false;
-
-		const float shitLevelDelta = m_body.getInfo().shitLevel - BodySettings::OPTIMAL_SHIT_LEVEL;
-
-		if (shitLevelDelta > BodySettings::OPTIMAL_SHIT_LEVEL)
-		{
-			//A changer pour le hapiness lvl
-		}
 
 		if (m_body.getInfo().shitLevel > BodySettings::OPTIMAL_SHIT_LEVEL)
 		{
@@ -124,6 +107,26 @@ namespace Human
 		return organTriggered;
 	}
 
+	void Brain::updateHappiness()
+	{
+		const float nutrimentLevelDelta = BodySettings::OPTIMAL_NUTRIENT_LEVEL - m_body.getInfo().nutrientLevel;
+		const float shitLevelDelta = m_body.getInfo().shitLevel - BodySettings::OPTIMAL_SHIT_LEVEL;
+		float nutrimentLevelRatio = 0.f;
+		float shitLevelRatio = 0.f;
+
+		if (nutrimentLevelDelta >= 0.f)
+		{
+			nutrimentLevelRatio = nutrimentLevelDelta / (BodySettings::OPTIMAL_NUTRIENT_LEVEL - BodySettings::MIN_NUTRIENT_LEVEL);
+		}
+
+		if (shitLevelDelta >= 0.f)
+		{
+			shitLevelRatio = shitLevelDelta / (BodySettings::OPTIMAL_SHIT_LEVEL - BodySettings::MIN_SHIT_LEVEL);
+		}
+
+		m_body.getInfo().happinessLevel = (1.f - nutrimentLevelRatio) * (1.f - shitLevelRatio);
+	}
+
     void Brain::update(float fps)
     {
         static float elapsedSeconds = 0.f;
@@ -135,6 +138,8 @@ namespace Human
             bool lungsTriggered = updateLungs(fps);
 			bool stomachTriggered = updateStomach(fps);
 			bool intestineTriggered = updateIntestine(fps);
+
+			updateHappiness();
             elapsedSeconds = 0.f;
 
             if (heartTriggered || lungsTriggered || stomachTriggered || intestineTriggered)
@@ -146,21 +151,6 @@ namespace Human
 
     void Brain::run()
     {
-        /*while (m_running)
-        {
-            Organ* heart = m_body.getOrgan(OrganID::Heart);
-            if (heart)
-            {
-                heart->trigger();
-            }
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
-            Organ* lungs = m_body.getOrgan(OrganID::Lungs);
-            if (lungs)
-            {
-                lungs->trigger();
-            }
-            std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-        }*/
     }
 }

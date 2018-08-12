@@ -166,6 +166,7 @@
     <ClCompile Include="Game\Human\Intestine.cpp" />
     <ClCompile Include="Game\Human\Liver.cpp" />
     <ClCompile Include="Game\Human\Lungs.cpp" />
+    <ClCompile Include="Game\Human\Mouth.cpp" />
     <ClCompile Include="Game\Human\Organ.cpp" />
     <ClCompile Include="Game\Human\Stomach.cpp" />
     <ClCompile Include="Game\States\GameState.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="Game\Human\Intestine.h" />
     <ClInclude Include="Game\Human\Liver.h" />
     <ClInclude Include="Game\Human\Lungs.h" />
+    <ClInclude Include="Game\Human\Mouth.h" />
     <ClInclude Include="Game\Human\Organ.h" />
     <ClInclude Include="Game\Human\OrganIdentifiers.h" />
     <ClInclude Include="Game\Human\Stomach.h" />

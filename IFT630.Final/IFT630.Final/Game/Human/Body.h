@@ -2,6 +2,7 @@
 
 #include "Engine/AtomicNumber.h"
 #include "Engine/States/State.h"
+#include "Game/Human/Mouth.h"
 #include "Game/Human/Organ.h"
 #include "Game/Human/OrganIdentifiers.h"
 #include <SFML/Graphics/Text.hpp>
@@ -44,6 +45,8 @@ namespace Human
         const float MAX_NUTRIENT_LEVEL = 1.f;
         const float OPTIMAL_NUTRIENT_LEVEL = 0.5f;
 
+		// Intestine
+		const float MIN_SHIT_LEVEL = 0.f;
 		const float MAX_SHIT_LEVEL = 1.f;
 		const float OPTIMAL_SHIT_LEVEL = 0.75f;
     };
@@ -51,7 +54,7 @@ namespace Human
     struct BodyInfo
     {
         // Brain
-        AtomicFloat sleepLevel = 1.f;
+		AtomicFloat sleepLevel = 1.f;
 
         // Heart
         AtomicFloat beatPerMinute = BodySettings::OPTIMAL_HEART_RATE;
@@ -63,8 +66,9 @@ namespace Human
         // Body
         AtomicFloat waterLevel = BodySettings::OPTIMAL_WATER_LEVEL;
         AtomicFloat nutrientLevel = BodySettings::OPTIMAL_NUTRIENT_LEVEL;
-
-		//Intestine
+        AtomicFloat happinessLevel = 1.f;
+        
+        // Intestine
 		AtomicFloat shitLevel = 0.5f;
     };
 
@@ -80,6 +84,8 @@ namespace Human
         Organ* getOrgan(OrganID id);
         void setOrganState(OrganID id, bool running);
         BodyInfo& getInfo();
+		const BodyInfo& getInfo() const;
+		bool setInfo(std::string command);
         const State::Context& getContext() const;
 
     private:
@@ -88,10 +94,15 @@ namespace Human
         std::unordered_set<OrganID> m_suspendedOrgans;
 
         sf::Sprite m_sprite;
+
         sf::Text m_bpmHeartText;
         sf::Text m_bpmLungsText;
         sf::Text m_oxygenLevelText;
         sf::Text m_nutrientLevelText;
+		sf::Text m_shitLevelText;
+		sf::Text m_happinessLevelText;
+
+		Mouth m_mouth;
 
         State::Context m_context;
     };

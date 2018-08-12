@@ -14,7 +14,7 @@ Application::Application()
 	, m_statisticsNumFrames{ 0 }
 {
 	m_window.setVerticalSyncEnabled(true);
-	m_window.setKeyRepeatEnabled(false);
+	//m_window.setKeyRepeatEnabled(false);
 	//m_window.setMouseCursorGrabbed(true);
 
 	m_fonts.load(FontsID::Main, "Resources/OpenSans-Light.ttf");

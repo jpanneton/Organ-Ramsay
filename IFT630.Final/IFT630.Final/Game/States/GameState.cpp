@@ -21,11 +21,12 @@ bool GameState::update(sf::Time dt)
 
 bool GameState::handleEvent(const sf::Event& event)
 {
+	m_world.handleEvent(event);
+
 	if (event.type == sf::Event::MouseMoved)
 	{
         static sf::Vector2f lastMousePosition{ sf::Mouse::getPosition(*getContext().window) };
         const sf::Vector2f mousePosition{ sf::Mouse::getPosition(*getContext().window) };
-		//m_playerController.handleMouseMovement(commands, mousePosition);
         if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
             m_world.moveView(lastMousePosition - mousePosition);
         lastMousePosition = mousePosition;
@@ -33,7 +34,7 @@ bool GameState::handleEvent(const sf::Event& event)
     else if (event.type == sf::Event::MouseWheelScrolled)
     {
         float zoomAmount = 1.1f;
-        if (event.mouseWheelScroll.delta > 0)
+        if (event.mouseWheelScroll.delta > 0.f)
             zoomAmount = 1.f / zoomAmount;
         m_world.zoomView({ event.mouseWheelScroll.x, event.mouseWheelScroll.y }, zoomAmount);
     }

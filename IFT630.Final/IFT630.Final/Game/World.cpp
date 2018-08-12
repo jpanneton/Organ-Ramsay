@@ -5,6 +5,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <algorithm>
+#include <iostream>
 
 World::World(State::Context context)
 	: m_context{ context }
@@ -19,6 +20,34 @@ void World::update(sf::Time dt)
 {
     const float fps = 60.f;
     m_humanBody.update(fps);
+}
+
+void World::handleEvent(const sf::Event& event)
+{
+	if (event.type == sf::Event::TextEntered)
+	{
+		system("cls");
+
+		if (event.text.unicode == 8) // Backspace
+		{
+			m_keyboardInput = m_keyboardInput.substr(0, m_keyboardInput.length() - 1);
+		}
+		else if(event.text.unicode == 10 || event.text.unicode == 13) // Enter
+		{
+			if (!m_humanBody.setInfo(m_keyboardInput))
+			{
+				std::cout << "Format attendu: [bpm | cpm | oxygen | nutrient | shit | happiness] = valeur" << std::endl;
+			}
+
+			m_keyboardInput.clear();
+		}
+		else
+		{
+			m_keyboardInput += static_cast<char>(event.text.unicode);
+		}
+
+		std::cout << m_keyboardInput;
+	}
 }
 
 void World::draw() const

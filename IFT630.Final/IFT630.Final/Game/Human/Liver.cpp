@@ -19,6 +19,8 @@ namespace Human
         while (m_running)
         {
             m_signaler.wait();
+			if (!m_running)
+				return;
         }
     }
 }

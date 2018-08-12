@@ -36,8 +36,11 @@ namespace Human
         while (m_running)
         {
             m_signaler.wait();
-            std::cout << "Battement" << std::endl;
-            std::this_thread::sleep_for(std::chrono::milliseconds(m_handicap));
+			if (!m_running)
+				return;
+
+            //std::cout << "Battement" << std::endl;
+            //sleep(m_handicap);
         }
     }
 }

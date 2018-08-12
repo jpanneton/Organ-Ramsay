@@ -48,12 +48,15 @@ namespace Human
         while (m_running)
         {
             m_signaler.wait();
-            std::cout << "Respiration" << std::endl;
+			if (!m_running)
+				return;
+
+            //std::cout << "Respiration" << std::endl;
 
             BodyInfo& infos = m_body.getInfo();
             if (infos.oxygenLevel < BodySettings::MAX_OXYGEN_LEVEL)
                 infos.oxygenLevel += 0.005f;
-            printf("Oxygen level: %.6f", infos.oxygenLevel.get());
+            //printf("Oxygen level: %.6f", infos.oxygenLevel.get());
         }
     }
 }

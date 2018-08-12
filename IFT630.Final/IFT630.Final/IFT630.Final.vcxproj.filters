@@ -85,6 +85,7 @@
       <Filter>Engine\States</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Game\Human\Mouth.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BaseTypes.h">
@@ -171,6 +172,7 @@
     <ClInclude Include="Engine\States\StateStack.h">
       <Filter>Engine\States</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Human\Mouth.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\ResourceHolder.inl">

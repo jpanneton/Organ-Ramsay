@@ -13,6 +13,7 @@ namespace Human
 {
     Body::Body(State::Context context)
         : m_context{ context }
+		, m_mouth{ *this }
     {
         m_organs.reserve(static_cast<size_t>(OrganID::COUNT));
         m_suspendedOrgans.reserve(static_cast<size_t>(OrganID::COUNT));
@@ -55,6 +56,12 @@ namespace Human
 
         m_nutrientLevelText.setFont(font);
         m_nutrientLevelText.setPosition(5.f, 105.f);
+
+		m_shitLevelText.setFont(font);
+		m_shitLevelText.setPosition(5.f, 135.f);
+
+		m_happinessLevelText.setFont(font);
+		m_happinessLevelText.setPosition(5.f, 165.f);
     }
 
     void Body::update(float fps)
@@ -74,10 +81,15 @@ namespace Human
             elapsedSeconds = 0.f;
         }
 
+		// Smile generation
+		m_mouth.update(fps);
+
         m_bpmHeartText.setString("BPM (heart): " + std::to_string(static_cast<int>(m_infos.beatPerMinute.get())));
         m_bpmLungsText.setString("BPM (lungs): " + std::to_string(static_cast<int>(m_infos.breathPerMinute.get())));
         m_oxygenLevelText.setString("OXYGEN: " + m_infos.oxygenLevel.toString());
         m_nutrientLevelText.setString("NUTRIENT: " + m_infos.nutrientLevel.toString());
+		m_shitLevelText.setString("SHIT: " + m_infos.shitLevel.toString());
+		m_happinessLevelText.setString("HAPPINESS: " + m_infos.happinessLevel.toString());
 
         elapsedSeconds += 1.f / fps;
     }
@@ -91,12 +103,16 @@ namespace Human
         m_organs.find(OrganID::Liver)->second->draw();
         m_organs.find(OrganID::Lungs)->second->draw();
         m_organs.find(OrganID::Heart)->second->draw();
+
+		m_mouth.draw();
         
         m_context.window->setView(m_context.window->getDefaultView());
         m_context.window->draw(m_bpmHeartText);
         m_context.window->draw(m_bpmLungsText);
         m_context.window->draw(m_oxygenLevelText);
         m_context.window->draw(m_nutrientLevelText);
+		m_context.window->draw(m_shitLevelText);
+		m_context.window->draw(m_happinessLevelText);
     }
 
     Organ* Body::getOrgan(OrganID id)
@@ -122,6 +138,49 @@ namespace Human
     {
         return m_infos;
     }
+
+	const BodyInfo& Body::getInfo() const
+	{
+		return m_infos;
+	}
+
+	bool Body::setInfo(std::string command)
+	{
+		// Remove spaces
+		command.erase(std::remove_if(command.begin(), command.end(), ::isspace), command.end());
+		// To lowercase
+		std::transform(command.begin(), command.end(), command.begin(), ::tolower);
+
+		size_t index = command.find('=');
+		std::string parameter = command.substr(0, index);
+		std::string valueStr = command.substr(index + 1);
+
+		try
+		{
+			float value = std::stof(valueStr);
+
+			if (parameter == "bpm")
+				m_infos.beatPerMinute = value;
+			else if (parameter == "cpm")
+				m_infos.breathPerMinute = value;
+			else if (parameter == "oxygen")
+				m_infos.oxygenLevel = value;
+			else if (parameter == "nutrient")
+				m_infos.nutrientLevel = value;
+			else if (parameter == "shit")
+				m_infos.shitLevel = value;
+			else if (parameter == "happiness")
+				m_infos.happinessLevel = value;
+			else
+				return false;
+		}
+		catch (const std::invalid_argument& e)
+		{
+			return false;
+		}
+
+		return true;
+	}
 
     const State::Context& Body::getContext() const
     {

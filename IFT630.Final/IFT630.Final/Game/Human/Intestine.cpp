@@ -1,6 +1,5 @@
 #include "Intestine.h"
 #include "Game/Human/Body.h"
-#include <iostream>
 
 namespace Human
 {
@@ -19,15 +18,19 @@ namespace Human
 
 	void Intestine::run()
 	{
-		m_signaler.wait();
-		BodyInfo& infos = m_body.getInfo();
-		std::cout << "c'est l'heure du caca" << std::endl;
-		while(infos.shitLevel>0.0051f)
+		while (m_running)
 		{
-			infos.shitLevel -= 0.005f;
-			std::this_thread::sleep_for(std::chrono::milliseconds(50));
+			m_signaler.wait();
+			if (!m_running)
+				return;
+
+			BodyInfo& infos = m_body.getInfo();
+			while (infos.shitLevel > 0.005f)
+			{
+				infos.shitLevel -= 0.005f;
+				m_body.getInfo().happinessLevel = infos.shitLevel.get();
+				sleep(50);
+			}
 		}
-		infos.shitLevel = 0;
-		
 	}
 }

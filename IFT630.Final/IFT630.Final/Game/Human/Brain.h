@@ -42,5 +42,6 @@ namespace Human
         bool updateLungs(float fps);
 	    bool updateStomach(float fps);
 	    bool updateIntestine(float fps);
+		void updateHappiness();
     };
 }

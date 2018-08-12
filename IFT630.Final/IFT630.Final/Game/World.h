@@ -12,12 +12,6 @@
 #include <SFML/Graphics/View.hpp>
 #include <vector>
 
-// Forward declaration
-namespace sf
-{
-	class RenderWindow;
-}
-
 /// @brief World elements (renderer, resources, scene graph, logical data, etc.)
 /// @author Jeremi Panneton
 /// @ingroup game
@@ -35,6 +29,10 @@ public:
 	/// @brief Draw all world elements
 	void draw() const;
 
+	/// @brief Handle keyboard event
+	/// @param[in] event Input event
+	void handleEvent(const sf::Event& event);
+
     void moveView(const sf::Vector2f& delta);
     void zoomView(const sf::Vector2i& position, float zoomAmount);
 
@@ -50,6 +48,8 @@ private:
 	sf::View m_worldView;
     /// @brief Dimensions of the world
     sf::FloatRect m_worldBounds;
+	/// @brief Keyboard input
+	std::string m_keyboardInput;
 
     /// @brief Human body
     Human::Body m_humanBody;

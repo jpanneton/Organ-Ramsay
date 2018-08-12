@@ -1,8 +1,6 @@
 #include "Stomach.h"
 #include "Game/Human/Body.h"
 #include <random>
-#include <iostream>
-#include <SFML/Graphics/Color.hpp>
 
 namespace Human
 {
@@ -25,15 +23,16 @@ namespace Human
 		std::random_device rd;
 		std::mt19937 gen(rd());
 
-
 		while (m_running)
 		{
 			m_signaler.wait();
+			if (!m_running)
+				return;
+
 			BodyInfo& infos = m_body.getInfo();
-			std::uniform_real_distribution<float>dist(0.01f, 1 - infos.nutrientLevel);
+			std::uniform_real_distribution<float> dist(0.01f, 1.f - infos.nutrientLevel);
 			float randomSnack = dist(gen);
 			infos.nutrientLevel += randomSnack;
-			std::cout<<"Nutriment level: "<<infos.nutrientLevel.get()<<std::endl;
 		}
 	}
 }

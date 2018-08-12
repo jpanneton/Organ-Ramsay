@@ -10,6 +10,7 @@
 #include <SFML/Window/Event.hpp>
 #include <memory>
 
+// Forward declarations
 namespace sf
 {
 	class RenderWindow;

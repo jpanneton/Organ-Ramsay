@@ -9,6 +9,7 @@
 #include <SFML/System/NonCopyable.hpp>
 #include <memory>
 
+// Forward declaration
 namespace sf
 {
 	class Event;
