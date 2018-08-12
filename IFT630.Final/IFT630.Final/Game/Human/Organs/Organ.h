@@ -42,11 +42,7 @@ namespace Human
         void shutdown();
 
     protected:
-		/// @brief Pause organ thread execution for a given time
-		/// @param[in] duration Time to wait in milliseconds
-		static void sleep(long long duration);
-
-		/// @brief Task to execute asynchronously
+    	/// @brief Task to execute asynchronously
         virtual void run() = 0;
 
 		//========================================

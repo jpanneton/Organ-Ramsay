@@ -39,9 +39,4 @@ namespace Human
         if (m_thread.joinable())
             m_thread.join();
     }
-
-	void Organ::sleep(long long duration)
-	{
-		std::this_thread::sleep_for(std::chrono::milliseconds(duration));
-	}
 }

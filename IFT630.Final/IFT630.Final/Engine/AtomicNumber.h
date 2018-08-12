@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Engine/Utilities/Math.h"
+#include "Engine/Utilities/Utilities.h"
 #include <atomic>
 #include <functional>
+#include <mutex>
 #include <string>
 
 /// @brief Atomic floating point number wrapper
@@ -59,13 +61,37 @@ public:
     bool operator >= (T value) { return get() >= value; }
     bool operator <= (T value) { return get() <= value; }
 
-    std::string toString() const
+
+	void setProgressive(T step,T extremum, bool decreasing, long long stepDuration = 50)
+	{
+		std::lock_guard<std::mutex> lock(m_mutex);
+
+		if (decreasing)
+		{
+			while (get() > extremum)
+			{
+				(*this) -= step;
+				Util::sleep(stepDuration);
+			}
+		}
+		else
+		{
+			while (get() < extremum)
+			{
+				(*this) += step;
+				Util::sleep(stepDuration);
+			}
+		}
+	}
+
+	std::string toString() const
     {
         return std::to_string(get());
     }
 
 private:
     std::atomic<T> m_value;
+	std::mutex m_mutex;
 };
 
 using AtomicFloat = AtomicNumber<float>;

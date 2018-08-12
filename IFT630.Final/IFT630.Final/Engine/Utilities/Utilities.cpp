@@ -1,5 +1,6 @@
 #include "Utilities.h"
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <thread>
 
 namespace Util
 {
@@ -14,4 +15,9 @@ namespace Util
         view.move(offsetCoords);
         window.setView(view);
     }
+
+	void sleep(long long duration)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(duration));
+	}
 }

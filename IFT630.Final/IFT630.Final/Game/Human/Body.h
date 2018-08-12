@@ -85,8 +85,8 @@ namespace Human
         sf::Text m_bpmHeartText;
         sf::Text m_bpmLungsText;
         sf::Text m_oxygenLevelText;
-        sf::Text m_nutrientLevelText;
-		sf::Text m_shitLevelText;
+        sf::Text m_energyLevelText;
+		sf::Text m_excrementLevelText;
 		sf::Text m_happinessLevelText;
 
 		/// @brief Main application context (shared resources)

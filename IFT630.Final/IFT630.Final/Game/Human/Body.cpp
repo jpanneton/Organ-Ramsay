@@ -54,11 +54,11 @@ namespace Human
         m_oxygenLevelText.setFont(font);
         m_oxygenLevelText.setPosition(5.f, 75.f);
 
-        m_nutrientLevelText.setFont(font);
-        m_nutrientLevelText.setPosition(5.f, 105.f);
+        m_energyLevelText.setFont(font);
+        m_energyLevelText.setPosition(5.f, 105.f);
 
-		m_shitLevelText.setFont(font);
-		m_shitLevelText.setPosition(5.f, 135.f);
+		m_excrementLevelText.setFont(font);
+		m_excrementLevelText.setPosition(5.f, 135.f);
 
 		m_happinessLevelText.setFont(font);
 		m_happinessLevelText.setPosition(5.f, 165.f);
@@ -87,8 +87,8 @@ namespace Human
         m_bpmHeartText.setString("BPM (heart): " + std::to_string(static_cast<int>(m_infos.beatPerMinute.get())));
         m_bpmLungsText.setString("BPM (lungs): " + std::to_string(static_cast<int>(m_infos.breathPerMinute.get())));
         m_oxygenLevelText.setString("OXYGEN: " + m_infos.oxygenLevel.toString());
-        m_nutrientLevelText.setString("NUTRIENT: " + m_infos.nutrientLevel.toString());
-		m_shitLevelText.setString("SHIT: " + m_infos.shitLevel.toString());
+        m_energyLevelText.setString("ENERGY: " + m_infos.energyLevel.toString());
+		m_excrementLevelText.setString("EXCREMENT: " + m_infos.excrementLevel.toString());
 		m_happinessLevelText.setString("HAPPINESS: " + m_infos.happinessLevel.toString());
 
         elapsedSeconds += 1.f / fps;
@@ -110,8 +110,8 @@ namespace Human
         m_context.window->draw(m_bpmHeartText);
         m_context.window->draw(m_bpmLungsText);
         m_context.window->draw(m_oxygenLevelText);
-        m_context.window->draw(m_nutrientLevelText);
-		m_context.window->draw(m_shitLevelText);
+        m_context.window->draw(m_energyLevelText);
+		m_context.window->draw(m_excrementLevelText);
 		m_context.window->draw(m_happinessLevelText);
     }
 
@@ -160,17 +160,17 @@ namespace Human
 			float value = std::stof(valueStr);
 
 			if (parameter == "bpm")
-				m_infos.beatPerMinute = value;
+				m_infos.beatPerMinute = CLAMP(HEART_RATE, value);
 			else if (parameter == "cpm")
-				m_infos.breathPerMinute = value;
+				m_infos.breathPerMinute = CLAMP(RESPIRATORY_RATE, value);
 			else if (parameter == "oxygen")
-				m_infos.oxygenLevel = value;
-			else if (parameter == "nutrient")
-				m_infos.nutrientLevel = value;
-			else if (parameter == "shit")
-				m_infos.shitLevel = value;
+				m_infos.oxygenLevel = CLAMP(OXYGEN_LEVEL, value);
+			else if (parameter == "energy")
+				m_infos.energyLevel = CLAMP(ENERGY_LEVEL, value);
+			else if (parameter == "excrement")
+				m_infos.excrementLevel = CLAMP(EXCREMENT_LEVEL, value);
 			else if (parameter == "happiness")
-				m_infos.happinessLevel = value;
+				m_infos.happinessLevel = CLAMP(HAPPINESS_LEVEL, value);
 			else
 				return false;
 		}

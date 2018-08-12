@@ -30,4 +30,8 @@ namespace Util
     /// @param[in] position Reference position (usually mouse position)
     /// @param[in] zoomAmount Zoom amount (ex: 1.0 = no zoom, 0.7 = 30% zoom in, 1.3 = 30% zoom out)
     void zoomViewAt(sf::RenderWindow& window, sf::View& view, const sf::Vector2i& position, float zoomAmount);
+
+	/// @brief Sleep wrapper
+	/// @param[in] duration Time to wait in milliseconds
+	void sleep(long long duration);
 }

@@ -6,7 +6,7 @@
 const sf::Time Application::TimePerFrame = sf::seconds(1.f / 60.f);
 
 Application::Application()
-	: m_window{ sf::VideoMode{ 1024, 768 }, "Quickshot", sf::Style::Close }
+	: m_window{ sf::VideoMode{ 1024, 768 }, "Organ Ramsay", sf::Style::Close }
 	, m_stateStack{ State::Context{ m_window, m_textures, m_fonts } }
 	, m_updateGame{ true }
 	, m_statisticsText{}

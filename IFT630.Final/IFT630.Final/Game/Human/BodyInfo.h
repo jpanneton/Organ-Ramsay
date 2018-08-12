@@ -16,7 +16,7 @@ namespace BodySettings
 
 	// Lungs
 	const float MIN_RESPIRATORY_RATE = 10;
-	const float MAX_RESPIRATORY_RATE = 50;
+	const float MAX_RESPIRATORY_RATE = 65;
 	const float OPTIMAL_RESPIRATORY_RATE = 15;
 
 	const float MIN_OXYGEN_LEVEL = 0.9f;
@@ -24,18 +24,17 @@ namespace BodySettings
 	const float OPTIMAL_OXYGEN_LEVEL = 0.95f;
 
 	// Body
-	const float MIN_WATER_LEVEL = 0.45f;
-	const float MAX_WATER_LEVEL = 0.65f;
-	const float OPTIMAL_WATER_LEVEL = 0.55f;
+	const float MIN_ENERGY_LEVEL = 0.05f;
+	const float MAX_ENERGY_LEVEL = 1.f;
+	const float OPTIMAL_ENERGY_LEVEL = 0.5f;
 
-	const float MIN_NUTRIENT_LEVEL = 0.05f;
-	const float MAX_NUTRIENT_LEVEL = 1.f;
-	const float OPTIMAL_NUTRIENT_LEVEL = 0.5f;
+	const float MIN_HAPPINESS_LEVEL = 0.f;
+	const float MAX_HAPPINESS_LEVEL = 1.f;
 
 	// Intestine
-	const float MIN_SHIT_LEVEL = 0.f;
-	const float MAX_SHIT_LEVEL = 1.f;
-	const float OPTIMAL_SHIT_LEVEL = 0.75f;
+	const float MIN_EXCREMENT_LEVEL = 0.f;
+	const float MAX_EXCREMENT_LEVEL = 1.f;
+	const float OPTIMAL_EXCREMENT_LEVEL = 0.5f;
 };
 
 /// @brief Human body parameters and statistics
@@ -51,13 +50,14 @@ struct BodyInfo
 
 	// Lungs
 	AtomicFloat breathPerMinute = BodySettings::OPTIMAL_RESPIRATORY_RATE;
-	AtomicFloat oxygenLevel = BodySettings::MIN_OXYGEN_LEVEL;
+	AtomicFloat oxygenLevel = BodySettings::OPTIMAL_OXYGEN_LEVEL;
 
-	// Body
-	AtomicFloat waterLevel = BodySettings::OPTIMAL_WATER_LEVEL;
-	AtomicFloat nutrientLevel = BodySettings::OPTIMAL_NUTRIENT_LEVEL;
-	AtomicFloat happinessLevel = 1.f;
+	// Body	
+	AtomicFloat energyLevel = BodySettings::OPTIMAL_ENERGY_LEVEL;
+	AtomicFloat happinessLevel = BodySettings::MAX_HAPPINESS_LEVEL;
 
 	// Intestine
-	AtomicFloat shitLevel = 0.5f;
+	AtomicFloat excrementLevel = BodySettings::MIN_EXCREMENT_LEVEL;
 };
+
+#define CLAMP(param, value) std::max(std::min(value, BodySettings::MAX_##param), BodySettings::MIN_##param)

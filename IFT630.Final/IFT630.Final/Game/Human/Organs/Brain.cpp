@@ -29,8 +29,7 @@ namespace Human
             {
                 heart->trigger();
                 organTriggered = true;
-				m_body.getInfo().nutrientLevel -= 0.005f;
-				m_body.getInfo().shitLevel += 0.005f;
+				m_body.getInfo().energyLevel -= 0.005f;				
             }
             elapsedSeconds = 0.f;
         }
@@ -63,8 +62,8 @@ namespace Human
             {
                 lungs->trigger();
                 organTriggered = true;
-				m_body.getInfo().nutrientLevel -= 0.005f;
-				m_body.getInfo().shitLevel += 0.005f;
+				m_body.getInfo().energyLevel -= 0.005f;
+				
             }
             elapsedSeconds = 0.f;
         }
@@ -77,7 +76,7 @@ namespace Human
 	{
 		bool organTriggered = false;
 
-		if (m_body.getInfo().nutrientLevel < BodySettings::MIN_NUTRIENT_LEVEL)
+		if (m_body.getInfo().energyLevel < BodySettings::MIN_ENERGY_LEVEL)
 		{
 			Organ* stomach = m_body.getOrgan(OrganID::Stomach);
 			if (stomach)
@@ -94,7 +93,7 @@ namespace Human
 	{
 		bool organTriggered = false;
 
-		if (m_body.getInfo().shitLevel > BodySettings::OPTIMAL_SHIT_LEVEL)
+		if (m_body.getInfo().excrementLevel > BodySettings::OPTIMAL_EXCREMENT_LEVEL)
 		{
 			Organ* intestine = m_body.getOrgan(OrganID::Intestine);
 			if (intestine)
@@ -102,29 +101,29 @@ namespace Human
 				intestine->trigger();
 				organTriggered = true;
 			}
-		}
+		}	
 
 		return organTriggered;
 	}
 
 	void Brain::updateHappiness()
 	{
-		const float nutrimentLevelDelta = BodySettings::OPTIMAL_NUTRIENT_LEVEL - m_body.getInfo().nutrientLevel;
-		const float shitLevelDelta = m_body.getInfo().shitLevel - BodySettings::OPTIMAL_SHIT_LEVEL;
-		float nutrimentLevelRatio = 0.f;
-		float shitLevelRatio = 0.f;
+		const float energyLevelDelta = BodySettings::OPTIMAL_ENERGY_LEVEL - m_body.getInfo().energyLevel;
+		const float excrementLevelDelta = m_body.getInfo().excrementLevel - BodySettings::OPTIMAL_EXCREMENT_LEVEL;
+		float energyLevelRatio = 0.f;
+		float excrementLevelRatio = 0.f;
 
-		if (nutrimentLevelDelta >= 0.f)
+		if (energyLevelDelta >= 0.f)
 		{
-			nutrimentLevelRatio = nutrimentLevelDelta / (BodySettings::OPTIMAL_NUTRIENT_LEVEL - BodySettings::MIN_NUTRIENT_LEVEL);
+			energyLevelRatio = energyLevelDelta / (BodySettings::OPTIMAL_ENERGY_LEVEL - BodySettings::MIN_ENERGY_LEVEL);
 		}
 
-		if (shitLevelDelta >= 0.f)
+		if (excrementLevelDelta >= 0.f)
 		{
-			shitLevelRatio = shitLevelDelta / (BodySettings::OPTIMAL_SHIT_LEVEL - BodySettings::MIN_SHIT_LEVEL);
+			excrementLevelRatio = excrementLevelDelta / (BodySettings::OPTIMAL_EXCREMENT_LEVEL - BodySettings::MIN_EXCREMENT_LEVEL);
 		}
 
-		m_body.getInfo().happinessLevel = (1.f - nutrimentLevelRatio) * (1.f - shitLevelRatio);
+		m_body.getInfo().happinessLevel = (1.f - energyLevelRatio) * (1.f - excrementLevelRatio);
 	}
 
     void Brain::update(float fps)

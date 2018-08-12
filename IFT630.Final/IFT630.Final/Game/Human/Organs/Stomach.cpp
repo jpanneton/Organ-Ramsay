@@ -4,18 +4,18 @@
 
 namespace Human
 {
-    Stomach::Stomach(Body& body)
-        : Organ{ body }
-    {
-        m_sprite.setTexture(body.getContext().textures->get(TexturesID::HumanStomach));
+	Stomach::Stomach(Body& body)
+		: Organ{ body }
+	{
+		m_sprite.setTexture(body.getContext().textures->get(TexturesID::HumanStomach));
 		m_sprite.setOrigin(sf::Vector2f(m_sprite.getTexture()->getSize()) / 2.f);
-        m_sprite.setColor(sf::Color(250, 135, 120));
+		m_sprite.setColor(sf::Color(250, 135, 120));
 		m_sprite.setPosition(435.f, 559.f);
-    }
+	}
 
 	void Stomach::update(float fps)
 	{
-		m_sprite.setScale(1.f + 0.5f * m_body.getInfo().nutrientLevel, 1.f + 0.5f * m_body.getInfo().nutrientLevel);
+		m_sprite.setScale(1.f + 0.5f * m_body.getInfo().energyLevel, 1.f + 0.5f * m_body.getInfo().energyLevel);
 	}
 
 	void Stomach::run()
@@ -30,9 +30,16 @@ namespace Human
 				return;
 
 			BodyInfo& infos = m_body.getInfo();
-			std::uniform_real_distribution<float> dist(0.01f, 1.f - infos.nutrientLevel);
-			float randomSnack = dist(gen);
-			infos.nutrientLevel += randomSnack;
+			std::uniform_real_distribution<float> distSnack(0.01f, 1.f - infos.energyLevel);
+			float randomSnack = distSnack(gen);
+			std::uniform_real_distribution<float> distExcrement(0.25f, 0.5f);
+			float randomDigestion = distExcrement(gen);
+
+			float temp = infos.energyLevel + randomSnack*(1 - randomDigestion);
+			infos.energyLevel.setProgressive(0.005f, temp, false);
+
+			temp = infos.excrementLevel + std::min(1 - infos.excrementLevel.get(), randomSnack*randomDigestion);
+			infos.excrementLevel.setProgressive(0.005f, temp, false);			
 		}
 	}
 }

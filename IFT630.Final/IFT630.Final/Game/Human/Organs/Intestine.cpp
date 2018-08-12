@@ -12,7 +12,7 @@ namespace Human
 
 	void Intestine::update(float fps)
 	{
-		sf::Uint8 colorOffset = static_cast<sf::Uint8>(100 * m_body.getInfo().shitLevel);
+		sf::Uint8 colorOffset = static_cast<sf::Uint8>(100 * m_body.getInfo().excrementLevel);
 		m_sprite.setColor(sf::Color(200 - colorOffset, 150 - colorOffset, 150 - colorOffset));
 	}
 
@@ -25,12 +25,8 @@ namespace Human
 				return;
 
 			BodyInfo& infos = m_body.getInfo();
-			while (infos.shitLevel > 0.005f)
-			{
-				infos.shitLevel -= 0.005f;
-				m_body.getInfo().happinessLevel = infos.shitLevel.get();
-				sleep(50);
-			}
+			Util::sleep(5000);
+			infos.excrementLevel.setProgressive(0.005f, 0.005f, true);
 		}
 	}
 }

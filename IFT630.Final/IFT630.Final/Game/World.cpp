@@ -36,7 +36,7 @@ void World::handleEvent(const sf::Event& event)
 		{
 			if (!m_humanBody.setInfo(m_keyboardInput))
 			{
-				std::cout << "Format attendu: [bpm | cpm | oxygen | nutrient | shit | happiness] = valeur" << std::endl;
+				std::cout << "Format attendu: [bpm | cpm | oxygen | energy | excrement | happiness] = valeur" << std::endl;
 			}
 
 			m_keyboardInput.clear();
