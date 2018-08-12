@@ -33,8 +33,14 @@ public:
 	/// @param[in] event Input event
 	void handleEvent(const sf::Event& event);
 
-    void moveView(const sf::Vector2f& delta);
-    void zoomView(const sf::Vector2i& position, float zoomAmount);
+	/// @brief Move world camera
+	/// @param[in] delta Delta to move the camera from its current position
+    void moveCamera(const sf::Vector2f& delta);
+
+	/// @brief Zoom world camera
+	/// @param[in] position Zoom position (reference pixel)
+	/// @param[in] zoomAmount Zoom amount (ex: 1.0 = no zoom, 0.7 = 30% zoom in, 1.3 = 30% zoom out)
+    void zoomCamera(const sf::Vector2i& position, float zoomAmount);
 
 private:
 	/// @brief Build the main scene of the game (level)

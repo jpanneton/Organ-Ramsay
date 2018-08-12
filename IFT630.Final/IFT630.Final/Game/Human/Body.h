@@ -1,15 +1,15 @@
 #pragma once
 
-#include "Engine/AtomicNumber.h"
 #include "Engine/States/State.h"
+#include "Game/Human/BodyInfo.h"
 #include "Game/Human/Mouth.h"
-#include "Game/Human/Organ.h"
 #include "Game/Human/OrganIdentifiers.h"
+#include "Game/Human/Organs/Organ.h"
 #include <SFML/Graphics/Text.hpp>
 #include <unordered_map>
 #include <unordered_set>
 
-// Forward declaration
+// Forward declarations
 namespace sf
 {
     class Font;
@@ -18,83 +18,70 @@ namespace sf
 
 namespace Human
 {
-    namespace BodySettings
-    {
-        const unsigned int AGE = 20;
-
-        // Heart
-        const float MIN_HEART_RATE = 40;
-        const float MAX_HEART_RATE = 220 - AGE;
-        const float OPTIMAL_HEART_RATE = MAX_HEART_RATE / 2;
-
-        // Lungs
-        const float MIN_RESPIRATORY_RATE = 10;
-        const float MAX_RESPIRATORY_RATE = 50;
-        const float OPTIMAL_RESPIRATORY_RATE = 15;
-
-        const float MIN_OXYGEN_LEVEL = 0.9f;
-        const float MAX_OXYGEN_LEVEL = 1.f;
-        const float OPTIMAL_OXYGEN_LEVEL = 0.95f;
-
-        // Body
-        const float MIN_WATER_LEVEL = 0.45f;
-        const float MAX_WATER_LEVEL = 0.65f;
-        const float OPTIMAL_WATER_LEVEL = 0.55f;
-
-        const float MIN_NUTRIENT_LEVEL = 0.05f;
-        const float MAX_NUTRIENT_LEVEL = 1.f;
-        const float OPTIMAL_NUTRIENT_LEVEL = 0.5f;
-
-		// Intestine
-		const float MIN_SHIT_LEVEL = 0.f;
-		const float MAX_SHIT_LEVEL = 1.f;
-		const float OPTIMAL_SHIT_LEVEL = 0.75f;
-    };
-
-    struct BodyInfo
-    {
-        // Brain
-		AtomicFloat sleepLevel = 1.f;
-
-        // Heart
-        AtomicFloat beatPerMinute = BodySettings::OPTIMAL_HEART_RATE;
-
-        // Lungs
-        AtomicFloat breathPerMinute = BodySettings::OPTIMAL_RESPIRATORY_RATE;
-        AtomicFloat oxygenLevel = BodySettings::MIN_OXYGEN_LEVEL;
-
-        // Body
-        AtomicFloat waterLevel = BodySettings::OPTIMAL_WATER_LEVEL;
-        AtomicFloat nutrientLevel = BodySettings::OPTIMAL_NUTRIENT_LEVEL;
-        AtomicFloat happinessLevel = 1.f;
-        
-        // Intestine
-		AtomicFloat shitLevel = 0.5f;
-    };
-
+	/// @brief Human body
+	/// @author Jeremi Panneton
+	/// @ingroup game
     class Body
     {
     public:
+		/// @brief Construct a base body (without organs)
+		/// @param[in] context Main application context (shared resources)
         Body(State::Context context);
 
+		/// @brief Load resources, start organs and create HUD
         void init();
+
+		/// @brief Update all world elements
+		/// @param[in] fps Frame rate
         void update(float fps);
+
+		/// @brief Draw body
         void draw() const;
 
+		/// @brief Get organ if active
+		/// @param[in] id Organ ID
+		/// @return Pointer to the organ instance
         Organ* getOrgan(OrganID id);
+
+		/// @brief Set if organ is active or not
+		/// @param[in] id Organ ID
+		/// @param[in] running If the organ should be active or not
         void setOrganState(OrganID id, bool running);
+
+		/// @brief Get body statistics
+		/// @return Body statistics
         BodyInfo& getInfo();
+
+		/// @brief Get body statistics (readonly)
+		/// @return Body statistics (readonly)
 		const BodyInfo& getInfo() const;
+
+		/// @brief Set body parameter from command
+		/// @param[in] command User command
+		/// @return If the command was valid or not
 		bool setInfo(std::string command);
+
+		/// @brief Get main application context
+		/// @return Context containing all the shared resources
         const State::Context& getContext() const;
 
     private:
+		/// @brief Body parameters and statistics
         BodyInfo m_infos;
-        std::unordered_map<OrganID, Organ::Ptr> m_organs;
-        std::unordered_set<OrganID> m_suspendedOrgans;
 
+		/// @brief Body organs
+        std::unordered_map<OrganID, Organ::Ptr> m_organs;
+
+		/// @brief Inactive organs
+        std::unordered_set<OrganID> m_inactiveOrgans;
+
+		/// @brief Body mouth
+		Mouth m_mouth;
+
+		/// @brief Body texture
         sf::Sprite m_sprite;
 
+		/// @brief HUD text
         sf::Text m_bpmHeartText;
         sf::Text m_bpmLungsText;
         sf::Text m_oxygenLevelText;
@@ -102,8 +89,7 @@ namespace Human
 		sf::Text m_shitLevelText;
 		sf::Text m_happinessLevelText;
 
-		Mouth m_mouth;
-
+		/// @brief Main application context (shared resources)
         State::Context m_context;
     };
 }

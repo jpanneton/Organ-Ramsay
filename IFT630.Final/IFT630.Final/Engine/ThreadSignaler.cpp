@@ -1,9 +1,5 @@
 #include "ThreadSignaler.h"
 
-ThreadSignaler::ThreadSignaler()
-{
-}
-
 void ThreadSignaler::notify()
 {
     std::lock_guard<std::mutex> lock(m_mutex);

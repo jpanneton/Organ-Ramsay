@@ -51,32 +51,8 @@
     <ClCompile Include="Engine\Utilities\Utilities.cpp">
       <Filter>Engine\Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Human\Body.cpp">
-      <Filter>Game\Human</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Human\Brain.cpp">
-      <Filter>Game\Human</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Human\Heart.cpp">
-      <Filter>Game\Human</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Human\Lungs.cpp">
-      <Filter>Game\Human</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Human\Organ.cpp">
-      <Filter>Game\Human</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\ThreadSignaler.cpp">
       <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Human\Stomach.cpp">
-      <Filter>Game\Human</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Human\Intestine.cpp">
-      <Filter>Game\Human</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Human\Liver.cpp">
-      <Filter>Game\Human</Filter>
     </ClCompile>
     <ClCompile Include="Engine\States\State.cpp">
       <Filter>Engine\States</Filter>
@@ -85,6 +61,14 @@
       <Filter>Engine\States</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Game\Human\Organs\Brain.cpp" />
+    <ClCompile Include="Game\Human\Organs\Heart.cpp" />
+    <ClCompile Include="Game\Human\Organs\Intestine.cpp" />
+    <ClCompile Include="Game\Human\Organs\Liver.cpp" />
+    <ClCompile Include="Game\Human\Organs\Lungs.cpp" />
+    <ClCompile Include="Game\Human\Organs\Organ.cpp" />
+    <ClCompile Include="Game\Human\Organs\Stomach.cpp" />
+    <ClCompile Include="Game\Human\Body.cpp" />
     <ClCompile Include="Game\Human\Mouth.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -133,35 +117,8 @@
     <ClInclude Include="Engine\Utilities\Utilities.h">
       <Filter>Engine\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Human\Body.h">
-      <Filter>Game\Human</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Human\Brain.h">
-      <Filter>Game\Human</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Human\Heart.h">
-      <Filter>Game\Human</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Human\Lungs.h">
-      <Filter>Game\Human</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Human\Organ.h">
-      <Filter>Game\Human</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\ThreadSignaler.h">
       <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Human\OrganIdentifiers.h">
-      <Filter>Game\Human</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Human\Stomach.h">
-      <Filter>Game\Human</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Human\Intestine.h">
-      <Filter>Game\Human</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Human\Liver.h">
-      <Filter>Game\Human</Filter>
     </ClInclude>
     <ClInclude Include="Engine\AtomicNumber.h">
       <Filter>Engine</Filter>
@@ -172,7 +129,17 @@
     <ClInclude Include="Engine\States\StateStack.h">
       <Filter>Engine\States</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Human\Organs\Brain.h" />
+    <ClInclude Include="Game\Human\Organs\Heart.h" />
+    <ClInclude Include="Game\Human\Organs\Intestine.h" />
+    <ClInclude Include="Game\Human\Organs\Liver.h" />
+    <ClInclude Include="Game\Human\Organs\Lungs.h" />
+    <ClInclude Include="Game\Human\Organs\Organ.h" />
+    <ClInclude Include="Game\Human\Organs\Stomach.h" />
+    <ClInclude Include="Game\Human\Body.h" />
     <ClInclude Include="Game\Human\Mouth.h" />
+    <ClInclude Include="Game\Human\OrganIdentifiers.h" />
+    <ClInclude Include="Game\Human\BodyInfo.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\ResourceHolder.inl">

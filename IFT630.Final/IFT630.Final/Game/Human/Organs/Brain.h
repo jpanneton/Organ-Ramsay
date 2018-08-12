@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Game/Human/Organ.h>
+#include <Game/Human/Organs/Organ.h>
 
 namespace Human
 {
@@ -33,8 +33,14 @@ namespace Human
         };
 
     public:
+		/// @brief Construct a brain in its default state (not yet started)
+		/// @param[in] body Body on which is attached the organ
         Brain(Body& body);
+
+		/// @see Organ::update
         void update(float fps) override;
+
+		/// @see Organ::run
         void run() override;
 
     private:

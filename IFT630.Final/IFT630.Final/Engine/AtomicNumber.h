@@ -5,9 +5,15 @@
 #include <functional>
 #include <string>
 
+/// @brief Atomic floating point number wrapper
+/// @tparam T Floating point type
+/// @author Jeremi Panneton
+/// @ingroup engine
 template<typename T>
 class AtomicNumber
 {
+	static_assert(std::is_floating_point<T>::value, "Type of AtomicNumber<T> must be a floating point type");
+
     template<template<typename U> class Operator>
     T performOperation(T value)
     {

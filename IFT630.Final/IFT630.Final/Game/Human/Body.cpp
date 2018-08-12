@@ -1,11 +1,11 @@
 #include "Body.h"
 #include "Game/ResourceIdentifiers.h"
-#include "Game/Human/Brain.h"
-#include "Game/Human/Heart.h"
-#include "Game/Human/Intestine.h"
-#include "Game/Human/Liver.h"
-#include "Game/Human/Lungs.h"
-#include "Game/Human/Stomach.h"
+#include "Game/Human/Organs/Brain.h"
+#include "Game/Human/Organs/Heart.h"
+#include "Game/Human/Organs/Intestine.h"
+#include "Game/Human/Organs/Liver.h"
+#include "Game/Human/Organs/Lungs.h"
+#include "Game/Human/Organs/Stomach.h"
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
@@ -16,7 +16,7 @@ namespace Human
 		, m_mouth{ *this }
     {
         m_organs.reserve(static_cast<size_t>(OrganID::COUNT));
-        m_suspendedOrgans.reserve(static_cast<size_t>(OrganID::COUNT));
+        m_inactiveOrgans.reserve(static_cast<size_t>(OrganID::COUNT));
     }
 
     void Body::init()
@@ -117,7 +117,7 @@ namespace Human
 
     Organ* Body::getOrgan(OrganID id)
     {
-        if (m_suspendedOrgans.find(id) != m_suspendedOrgans.end())
+        if (m_inactiveOrgans.find(id) != m_inactiveOrgans.end())
             return nullptr;
 
         auto organIt = m_organs.find(id);
@@ -129,9 +129,9 @@ namespace Human
     void Body::setOrganState(OrganID id, bool running)
     {
         if (!running)
-            m_suspendedOrgans.insert(id);
+            m_inactiveOrgans.insert(id);
         else
-            m_suspendedOrgans.erase(id);
+            m_inactiveOrgans.erase(id);
     }
 
     BodyInfo& Body::getInfo()
@@ -174,7 +174,7 @@ namespace Human
 			else
 				return false;
 		}
-		catch (const std::invalid_argument& e)
+		catch (const std::invalid_argument&)
 		{
 			return false;
 		}

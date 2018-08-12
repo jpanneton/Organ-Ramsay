@@ -57,12 +57,12 @@ void World::draw() const
     m_context.window->setView(m_worldView);
 }
 
-void World::moveView(const sf::Vector2f& delta)
+void World::moveCamera(const sf::Vector2f& delta)
 {
     m_worldView.move(m_worldView.getSize().x / m_context.window->getSize().x * delta);
 }
 
-void World::zoomView(const sf::Vector2i& position, float zoomAmount)
+void World::zoomCamera(const sf::Vector2i& position, float zoomAmount)
 {
     Util::zoomViewAt(*m_context.window, m_worldView, position, zoomAmount);
 }

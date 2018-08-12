@@ -7,7 +7,6 @@ namespace Human
 {
     Organ::Organ(Body& body)
         : m_body{ body }
-        , m_handicap{ 0 }
         , m_running{ false }
     {
     }
