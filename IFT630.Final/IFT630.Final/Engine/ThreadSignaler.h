@@ -1,5 +1,9 @@
 #pragma once
 
+// Name: ThreadSignaler.h
+// Author: Jérémi Panneton
+// Description: Thread signaling class
+
 #include <condition_variable>
 #include <mutex>
 

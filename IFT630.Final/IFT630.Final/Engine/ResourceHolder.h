@@ -2,7 +2,6 @@
 
 // Name: ResourceHolder.h
 // Author: Jérémi Panneton
-// Creation date: October 16th, 2016
 // Description: Resource holder class
 
 #include <cassert> // Used in ResourceHolder.inl

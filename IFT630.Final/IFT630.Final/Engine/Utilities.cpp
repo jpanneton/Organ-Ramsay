@@ -16,6 +16,11 @@ namespace Util
         window.setView(view);
     }
 
+	float normalDist(float x, float mean, float std)
+	{
+		return exp(-0.5f * pow(x - mean, 2) / pow(std, 2)) / (std * sqrt(2.f * pi<float>()));
+	}
+
 	void sleep(long long duration)
 	{
 		std::this_thread::sleep_for(std::chrono::milliseconds(duration));

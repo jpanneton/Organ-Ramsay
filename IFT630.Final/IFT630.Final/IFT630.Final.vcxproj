@@ -151,14 +151,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\GUI\Button.cpp" />
-    <ClCompile Include="Engine\GUI\Component.cpp" />
-    <ClCompile Include="Engine\GUI\Container.cpp" />
-    <ClCompile Include="Engine\GUI\Label.cpp" />
     <ClCompile Include="Engine\States\State.cpp" />
     <ClCompile Include="Engine\States\StateStack.cpp" />
     <ClCompile Include="Engine\ThreadSignaler.cpp" />
-    <ClCompile Include="Engine\Utilities\Utilities.cpp" />
+    <ClCompile Include="Engine\Utilities.cpp" />
     <ClCompile Include="Game\Application.cpp" />
     <ClCompile Include="Game\Human\Body.cpp" />
     <ClCompile Include="Game\Human\Mouth.cpp" />
@@ -176,18 +172,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AtomicNumber.h" />
-    <ClInclude Include="Engine\BaseTypes.h" />
-    <ClInclude Include="Engine\GUI\Button.h" />
-    <ClInclude Include="Engine\GUI\Component.h" />
-    <ClInclude Include="Engine\GUI\Container.h" />
-    <ClInclude Include="Engine\GUI\Label.h" />
     <ClInclude Include="Engine\ResourceHolder.h" />
     <ClInclude Include="Engine\States\State.h" />
     <ClInclude Include="Engine\States\StateStack.h" />
     <ClInclude Include="Engine\ThreadSignaler.h" />
-    <ClInclude Include="Engine\Utilities\Angle.h" />
-    <ClInclude Include="Engine\Utilities\Math.h" />
-    <ClInclude Include="Engine\Utilities\Utilities.h" />
+    <ClInclude Include="Engine\Utilities.h" />
     <ClInclude Include="Game\Application.h" />
     <ClInclude Include="Game\Human\Body.h" />
     <ClInclude Include="Game\Human\BodyInfo.h" />

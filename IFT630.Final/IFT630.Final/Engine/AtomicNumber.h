@@ -1,7 +1,10 @@
 #pragma once
 
-#include "Engine/Utilities/Math.h"
-#include "Engine/Utilities/Utilities.h"
+// Name: AtomicNumber.h
+// Author: Jérémi Panneton
+// Description: Atomic floating point number class
+
+#include "Engine/Utilities.h"
 #include <atomic>
 #include <functional>
 #include <mutex>
@@ -16,6 +19,9 @@ class AtomicNumber
 {
 	static_assert(std::is_floating_point<T>::value, "Type of AtomicNumber<T> must be a floating point type");
 
+	/// @brief Perform arithmetic operation atomically
+	/// @tparam[in] Operator Arithmetic operator type
+	/// @param[in] value Value on which to apply the operator along with the current value
     template<template<typename U> class Operator>
     T performOperation(T value)
     {
@@ -36,11 +42,11 @@ public:
     // Arithmetic operators
     void operator = (T value) { m_value = value; }
 
-    /*Number operator + (T value) { return Number(m_value + value); }
-    Number operator - (T value) { return Number(m_value - value); }
-    Number operator * (T value) { return Number(m_value * value); }
-    Number operator / (T value) { return Number(m_value / value); }
-    Number operator % (T value) { return Number(m_value % value); }*/
+    // Number operator + (T value) { return Number(m_value + value); }
+    // Number operator - (T value) { return Number(m_value - value); }
+    // Number operator * (T value) { return Number(m_value * value); }
+    // Number operator / (T value) { return Number(m_value / value); }
+    // Number operator % (T value) { return Number(m_value % value); }
 
     T operator += (T value) { return performOperation<std::plus>(value); }
     T operator -= (T value) { return performOperation<std::minus>(value); }
@@ -61,14 +67,18 @@ public:
     bool operator >= (T value) { return get() >= value; }
     bool operator <= (T value) { return get() <= value; }
 
-
-	void setProgressive(T step,T extremum, bool decreasing, long long stepDuration = 50)
+	/// @brief Set value by increasing / decreasing it progressively
+	/// @param[in] value Value to reach
+	/// @param[in] step Step by which to increase / decrease the value
+	/// @param[in] stepDuration Time to wait between each step in milliseconds (speed)
+	void setProgressive(T value, T step = 0.005, long long stepDuration = 50)
 	{
+		// Prevent two concurrent setProgressive calls from cancelling out each other (infinite loop)
 		std::lock_guard<std::mutex> lock(m_mutex);
 
-		if (decreasing)
+		if (get() > value)
 		{
-			while (get() > extremum)
+			while (get() > value)
 			{
 				(*this) -= step;
 				Util::sleep(stepDuration);
@@ -76,7 +86,7 @@ public:
 		}
 		else
 		{
-			while (get() < extremum)
+			while (get() < value)
 			{
 				(*this) += step;
 				Util::sleep(stepDuration);
@@ -84,7 +94,7 @@ public:
 		}
 	}
 
-	std::string toString() const
+    std::string toString() const
     {
         return std::to_string(get());
     }

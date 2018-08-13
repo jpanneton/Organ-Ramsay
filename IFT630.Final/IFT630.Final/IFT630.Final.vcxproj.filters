@@ -24,18 +24,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\GUI\Button.cpp">
-      <Filter>Engine\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\GUI\Component.cpp">
-      <Filter>Engine\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\GUI\Container.cpp">
-      <Filter>Engine\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\GUI\Label.cpp">
-      <Filter>Engine\GUI</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Application.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -47,9 +35,6 @@
     </ClCompile>
     <ClCompile Include="Game\States\PauseState.cpp">
       <Filter>Game\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Utilities\Utilities.cpp">
-      <Filter>Engine\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Engine\ThreadSignaler.cpp">
       <Filter>Engine</Filter>
@@ -70,31 +55,13 @@
     <ClCompile Include="Game\Human\Organs\Stomach.cpp" />
     <ClCompile Include="Game\Human\Body.cpp" />
     <ClCompile Include="Game\Human\Mouth.cpp" />
+    <ClCompile Include="Engine\Utilities.cpp">
+      <Filter>Engine\Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\BaseTypes.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\ResourceHolder.h">
       <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Utilities\Angle.h">
-      <Filter>Engine\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Utilities\Math.h">
-      <Filter>Engine\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\GUI\Button.h">
-      <Filter>Engine\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\GUI\Component.h">
-      <Filter>Engine\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\GUI\Container.h">
-      <Filter>Engine\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\GUI\Label.h">
-      <Filter>Engine\GUI</Filter>
     </ClInclude>
     <ClInclude Include="Game\Application.h">
       <Filter>Game</Filter>
@@ -113,9 +80,6 @@
     </ClInclude>
     <ClInclude Include="Game\States\StateIdentifiers.h">
       <Filter>Game\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Utilities\Utilities.h">
-      <Filter>Engine\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Engine\ThreadSignaler.h">
       <Filter>Engine</Filter>
@@ -140,6 +104,9 @@
     <ClInclude Include="Game\Human\Mouth.h" />
     <ClInclude Include="Game\Human\OrganIdentifiers.h" />
     <ClInclude Include="Game\Human\BodyInfo.h" />
+    <ClInclude Include="Engine\Utilities.h">
+      <Filter>Engine\Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\ResourceHolder.inl">
