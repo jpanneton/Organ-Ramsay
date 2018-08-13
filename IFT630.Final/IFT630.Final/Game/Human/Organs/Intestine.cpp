@@ -26,7 +26,7 @@ namespace Human
 
 			BodyInfo& infos = m_body.getInfo();
 			Util::sleep(5000);
-			infos.excrementLevel.setProgressive(0.005f, 0.005f, true);
+			infos.excrementLevel.setProgressive(0.0051f);
 		}
 	}
 }

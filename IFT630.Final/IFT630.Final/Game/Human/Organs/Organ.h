@@ -1,5 +1,9 @@
 #pragma once
 
+// Name: Organ.h
+// Author: Jérémi Panneton
+// Description: Base organ class
+
 #include "Engine/ThreadSignaler.h"
 #include <SFML/Graphics/Sprite.hpp>
 #include <atomic>
@@ -10,7 +14,7 @@ namespace Human
 {
     class Body;
 
-	/// @brief Human organ
+	/// @brief Human organ (asynchronous)
 	/// @author Jeremi Panneton
 	/// @ingroup game
     class Organ
@@ -27,7 +31,7 @@ namespace Human
 
 		/// @brief Update animation and visual stuff (if any)
 		/// @param[in] fps Frame rate
-        virtual void update(float fps) = 0;
+        virtual void update(float fps);
 
 		/// @brief Draw organ
         virtual void draw() const;
@@ -42,7 +46,7 @@ namespace Human
         void shutdown();
 
     protected:
-    	/// @brief Task to execute asynchronously
+		/// @brief Task to execute asynchronously
         virtual void run() = 0;
 
 		//========================================

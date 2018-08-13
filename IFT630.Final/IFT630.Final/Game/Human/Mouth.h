@@ -1,5 +1,9 @@
 #pragma once
 
+// Name: Mouth.h
+// Author: Jérémi Panneton
+// Description: Mouth class
+
 #include <SFML/Graphics/VertexArray.hpp>
 
 // Forward declaration
@@ -30,9 +34,9 @@ namespace Human
 
 	private:
 		/// @see Mouth length in pixels
-		const float length = 25.f;
+		const float LENGTH = 25.f;
 		/// @see Mouth thickness in pixels
-		const float thickness = 5.f;
+		const float THICKNESS = 5.f;
 
 		/// Body on which is attached the mouth
 		const Body& m_body;

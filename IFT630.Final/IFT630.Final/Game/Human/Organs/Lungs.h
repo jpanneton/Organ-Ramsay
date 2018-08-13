@@ -1,10 +1,14 @@
 #pragma once
 
+// Name: Lungs.h
+// Author: Jérémi Panneton
+// Description: Lungs organ class
+
 #include <Game/Human/Organs/Organ.h>
 
 namespace Human
 {
-	/// @brief Human lungs
+	/// @brief Human lungs (asynchronous)
 	/// @author Jeremi Panneton
 	/// @ingroup game
     class Lungs : public Organ

@@ -16,6 +16,10 @@ namespace Human
         shutdown();
     }
 
+	void Organ::update(float fps)
+	{
+	}
+
     void Organ::draw() const
     {
         m_body.getContext().window->draw(m_sprite);

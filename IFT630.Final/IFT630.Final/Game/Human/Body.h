@@ -1,5 +1,9 @@
 #pragma once
 
+// Name: Body.h
+// Author: Jérémi Panneton
+// Description: Body class
+
 #include "Engine/States/State.h"
 #include "Game/Human/BodyInfo.h"
 #include "Game/Human/Mouth.h"
@@ -7,7 +11,6 @@
 #include "Game/Human/Organs/Organ.h"
 #include <SFML/Graphics/Text.hpp>
 #include <unordered_map>
-#include <unordered_set>
 
 // Forward declarations
 namespace sf
@@ -38,15 +41,10 @@ namespace Human
 		/// @brief Draw body
         void draw() const;
 
-		/// @brief Get organ if active
+		/// @brief Get organ if it exists
 		/// @param[in] id Organ ID
 		/// @return Pointer to the organ instance
         Organ* getOrgan(OrganID id);
-
-		/// @brief Set if organ is active or not
-		/// @param[in] id Organ ID
-		/// @param[in] running If the organ should be active or not
-        void setOrganState(OrganID id, bool running);
 
 		/// @brief Get body statistics
 		/// @return Body statistics
@@ -66,14 +64,14 @@ namespace Human
         const State::Context& getContext() const;
 
     private:
+		/// @brief Main application context (shared resources)
+		State::Context m_context;
+
 		/// @brief Body parameters and statistics
         BodyInfo m_infos;
 
 		/// @brief Body organs
         std::unordered_map<OrganID, Organ::Ptr> m_organs;
-
-		/// @brief Inactive organs
-        std::unordered_set<OrganID> m_inactiveOrgans;
 
 		/// @brief Body mouth
 		Mouth m_mouth;
@@ -88,8 +86,5 @@ namespace Human
         sf::Text m_energyLevelText;
 		sf::Text m_excrementLevelText;
 		sf::Text m_happinessLevelText;
-
-		/// @brief Main application context (shared resources)
-        State::Context m_context;
     };
 }

@@ -1,5 +1,4 @@
 #include "Brain.h"
-#include "Engine/Utilities/Math.h"
 #include "Game/Human/Body.h"
 #include "Game/Human/OrganIdentifiers.h"
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -29,7 +28,6 @@ namespace Human
             {
                 heart->trigger();
                 organTriggered = true;
-				m_body.getInfo().energyLevel -= 0.005f;				
             }
             elapsedSeconds = 0.f;
         }
@@ -62,7 +60,6 @@ namespace Human
             {
                 lungs->trigger();
                 organTriggered = true;
-				m_body.getInfo().energyLevel -= 0.005f;
 				
             }
             elapsedSeconds = 0.f;
@@ -150,6 +147,5 @@ namespace Human
 
     void Brain::run()
     {
-
     }
 }

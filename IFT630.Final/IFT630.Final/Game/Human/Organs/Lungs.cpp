@@ -32,15 +32,13 @@ namespace Human
         const float xps = 3.f / fps; // x per second
         x += xps * bps;
         if (x > 1.5f)
-        {
             x = -1.5f;
-        }
     }
 
     void Lungs::draw() const
     {
         m_body.getContext().window->draw(m_trachea);
-        m_body.getContext().window->draw(m_sprite);
+		Organ::draw();
     }
 
     void Lungs::run()
@@ -51,12 +49,9 @@ namespace Human
 			if (!m_running)
 				return;
 
-            //std::cout << "Respiration" << std::endl;
-
             BodyInfo& infos = m_body.getInfo();
-            if (infos.oxygenLevel < BodySettings::MAX_OXYGEN_LEVEL)
-                infos.oxygenLevel += 0.005f;
-            //printf("Oxygen level: %.6f", infos.oxygenLevel.get());
+			infos.oxygenLevel = std::min(infos.oxygenLevel + 0.005f, BodySettings::MAX_OXYGEN_LEVEL);
+			infos.energyLevel -= 0.005f;
         }
     }
 }

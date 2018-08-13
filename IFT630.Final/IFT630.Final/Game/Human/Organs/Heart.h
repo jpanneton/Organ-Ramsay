@@ -1,10 +1,14 @@
 #pragma once
 
+// Name: Heart.h
+// Author: Jérémi Panneton
+// Description: Heart organ class
+
 #include <Game/Human/Organs/Organ.h>
 
 namespace Human
 {
-	/// @brief Human heart
+	/// @brief Human heart (asynchronous)
 	/// @author Jeremi Panneton
 	/// @ingroup game
     class Heart : public Organ

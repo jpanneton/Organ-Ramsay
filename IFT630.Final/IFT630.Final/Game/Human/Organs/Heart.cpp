@@ -1,6 +1,5 @@
 #include "Heart.h"
 #include "Game/Human/Body.h"
-#include "Engine/Utilities/Math.h"
 #include <iostream>
 
 namespace Human
@@ -26,9 +25,7 @@ namespace Human
         const float xps = 3.f / fps; // x per second
         x += xps * bps;
         if (x > 1.5f)
-        {
             x = -1.5f;
-        }
     }
 
     void Heart::run()
@@ -38,9 +35,8 @@ namespace Human
             m_signaler.wait();
 			if (!m_running)
 				return;
-
-            //std::cout << "Battement" << std::endl;
-            //sleep(m_handicap);
+			BodyInfo& infos = m_body.getInfo();
+			infos.energyLevel -= 0.005f;
         }
     }
 }

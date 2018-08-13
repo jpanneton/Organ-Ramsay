@@ -13,11 +13,6 @@ namespace Human
 		m_sprite.setPosition(435.f, 559.f);
 	}
 
-	void Stomach::update(float fps)
-	{
-		m_sprite.setScale(1.f + 0.5f * m_body.getInfo().energyLevel, 1.f + 0.5f * m_body.getInfo().energyLevel);
-	}
-
 	void Stomach::run()
 	{
 		std::random_device rd;
@@ -32,14 +27,14 @@ namespace Human
 			BodyInfo& infos = m_body.getInfo();
 			std::uniform_real_distribution<float> distSnack(0.01f, 1.f - infos.energyLevel);
 			float randomSnack = distSnack(gen);
-			std::uniform_real_distribution<float> distExcrement(0.25f, 0.5f);
-			float randomDigestion = distExcrement(gen);
+			std::uniform_real_distribution<float> distDigestion(0.25f, 0.5f);
+			float randomDigestion = distDigestion(gen);
 
-			float temp = infos.energyLevel + randomSnack*(1 - randomDigestion);
-			infos.energyLevel.setProgressive(0.005f, temp, false);
+			float energyLevel = std::min(infos.energyLevel + randomSnack * (1.f - randomDigestion), BodySettings::MAX_ENERGY_LEVEL);
+			infos.energyLevel.setProgressive(energyLevel);
 
-			temp = infos.excrementLevel + std::min(1 - infos.excrementLevel.get(), randomSnack*randomDigestion);
-			infos.excrementLevel.setProgressive(0.005f, temp, false);			
+			float excrementLevel = std::min(infos.excrementLevel + randomSnack * randomDigestion, BodySettings::MAX_EXCREMENT_LEVEL);
+			infos.excrementLevel.setProgressive(excrementLevel);
 		}
 	}
 }

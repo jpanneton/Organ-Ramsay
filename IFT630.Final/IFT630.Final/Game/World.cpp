@@ -1,6 +1,5 @@
 #include "World.h"
-#include "Engine/Utilities/Math.h"
-#include "Engine/Utilities/Utilities.h"
+#include "Engine/Utilities.h"
 #include "Game/ResourceIdentifiers.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Texture.hpp>
@@ -14,12 +13,12 @@ World::World(State::Context context)
     , m_humanBody{ context }
 {
 	buildScene();
+	moveCamera(sf::Vector2f(-150.f, 0.f));
 }
 
 void World::update(sf::Time dt)
 {
-    const float fps = 60.f;
-    m_humanBody.update(fps);
+	m_humanBody.update(60.f);
 }
 
 void World::handleEvent(const sf::Event& event)
@@ -36,7 +35,7 @@ void World::handleEvent(const sf::Event& event)
 		{
 			if (!m_humanBody.setInfo(m_keyboardInput))
 			{
-				std::cout << "Format attendu: [bpm | cpm | oxygen | energy | excrement | happiness] = valeur" << std::endl;
+				std::cout << "Format attendu: [bpm | cpm | oxygen | energy | excrement] = valeur" << std::endl;
 			}
 
 			m_keyboardInput.clear();

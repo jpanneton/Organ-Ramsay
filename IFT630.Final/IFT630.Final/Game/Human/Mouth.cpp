@@ -33,17 +33,17 @@ namespace Human
 		float steepness = 0.01f * (1.f - 2.f * happinessLevel);
 
 		m_points.clear();
-		for (float x = 0.f; x < length; x += 0.25f)
+		for (float x = 0.f; x < LENGTH; x += 0.25f)
 		{
 			sf::Vector2f tangentVector(1.f, quadraticDerivative(x, 2.f * steepness));
 			sf::Vector2f normalVector = getUnitVector(tangentVector.y, -tangentVector.x);
 
 			sf::Vertex v1(m_position + sf::Vector2f(x, quadratic(x, steepness)));
-			sf::Vertex v2 = v1.position + normalVector * thickness;
+			sf::Vertex v2 = v1.position + normalVector * THICKNESS;
 			v1.color = sf::Color(100, 100, 100);
 			v2.color = sf::Color::Black;
 
-			if (x + 0.27f >= length)
+			if (x + 0.27f >= LENGTH)
 			{
 				sf::Vector2f normal = v2.position - v1.position;
 				normal = getUnitVector(normal.y, -normal.x);

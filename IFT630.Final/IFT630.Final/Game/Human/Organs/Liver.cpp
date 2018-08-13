@@ -10,10 +10,6 @@ namespace Human
         m_sprite.setColor(sf::Color(110, 45, 30));
     }
 
-    void Liver::update(float fps)
-    {
-    }
-
     void Liver::run()
     {
         while (m_running)

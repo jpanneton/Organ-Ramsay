@@ -27,7 +27,7 @@ bool GameState::handleEvent(const sf::Event& event)
 	{
         static sf::Vector2f lastMousePosition{ sf::Mouse::getPosition(*getContext().window) };
         const sf::Vector2f mousePosition{ sf::Mouse::getPosition(*getContext().window) };
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
             m_world.moveCamera(lastMousePosition - mousePosition);
         lastMousePosition = mousePosition;
 	}

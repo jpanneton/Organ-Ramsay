@@ -23,6 +23,10 @@ Application::Application()
 	m_textures.load(TexturesID::ButtonSelected, "Resources/Textures/ButtonSelected.png");
 	m_textures.load(TexturesID::ButtonPressed, "Resources/Textures/ButtonPressed.png");
 
+	sf::Image icon;
+	if (icon.loadFromFile("Resources/Icon.png"))
+		m_window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+
 	m_statisticsText.setFont(m_fonts.get(FontsID::Main));
 	m_statisticsText.setPosition(5.f, 5.f);
 	m_statisticsText.setCharacterSize(10);

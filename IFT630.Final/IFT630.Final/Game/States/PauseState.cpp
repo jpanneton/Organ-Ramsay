@@ -1,6 +1,6 @@
 #include "PauseState.h"
 #include "Engine/ResourceHolder.h"
-#include "Engine/Utilities/Utilities.h"
+#include "Engine/Utilities.h"
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 

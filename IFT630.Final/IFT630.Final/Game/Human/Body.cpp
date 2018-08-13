@@ -16,7 +16,6 @@ namespace Human
 		, m_mouth{ *this }
     {
         m_organs.reserve(static_cast<size_t>(OrganID::COUNT));
-        m_inactiveOrgans.reserve(static_cast<size_t>(OrganID::COUNT));
     }
 
     void Body::init()
@@ -84,12 +83,13 @@ namespace Human
 		// Smile generation
 		m_mouth.update(fps);
 
+		const size_t decimalCount = 2;
         m_bpmHeartText.setString("BPM (heart): " + std::to_string(static_cast<int>(m_infos.beatPerMinute.get())));
-        m_bpmLungsText.setString("BPM (lungs): " + std::to_string(static_cast<int>(m_infos.breathPerMinute.get())));
-        m_oxygenLevelText.setString("OXYGEN: " + m_infos.oxygenLevel.toString());
-        m_energyLevelText.setString("ENERGY: " + m_infos.energyLevel.toString());
-		m_excrementLevelText.setString("EXCREMENT: " + m_infos.excrementLevel.toString());
-		m_happinessLevelText.setString("HAPPINESS: " + m_infos.happinessLevel.toString());
+        m_bpmLungsText.setString("CPM (lungs): " + std::to_string(static_cast<int>(m_infos.breathPerMinute.get())));
+        m_oxygenLevelText.setString("OXYGEN: " + m_infos.oxygenLevel.toString().substr(0, 2 + decimalCount));
+        m_energyLevelText.setString("ENERGY: " + m_infos.energyLevel.toString().substr(0, 2 + decimalCount));
+		m_excrementLevelText.setString("EXCREMENT: " + m_infos.excrementLevel.toString().substr(0, 2 + decimalCount));
+		m_happinessLevelText.setString("HAPPINESS: " + m_infos.happinessLevel.toString().substr(0, 2 + decimalCount));
 
         elapsedSeconds += 1.f / fps;
     }
@@ -117,21 +117,10 @@ namespace Human
 
     Organ* Body::getOrgan(OrganID id)
     {
-        if (m_inactiveOrgans.find(id) != m_inactiveOrgans.end())
-            return nullptr;
-
         auto organIt = m_organs.find(id);
         if (organIt == m_organs.end())
             return nullptr;
         return organIt->second.get();
-    }
-
-    void Body::setOrganState(OrganID id, bool running)
-    {
-        if (!running)
-            m_inactiveOrgans.insert(id);
-        else
-            m_inactiveOrgans.erase(id);
     }
 
     BodyInfo& Body::getInfo()
@@ -169,8 +158,6 @@ namespace Human
 				m_infos.energyLevel = CLAMP(ENERGY_LEVEL, value);
 			else if (parameter == "excrement")
 				m_infos.excrementLevel = CLAMP(EXCREMENT_LEVEL, value);
-			else if (parameter == "happiness")
-				m_infos.happinessLevel = CLAMP(HAPPINESS_LEVEL, value);
 			else
 				return false;
 		}

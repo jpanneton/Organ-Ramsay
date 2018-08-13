@@ -1,10 +1,14 @@
 #pragma once
 
+// Name: Intestine.h
+// Author: Charles Denicourt
+// Description: Intestine organ class
+
 #include <Game/Human/Organs/Organ.h>
 
 namespace Human
 {
-	/// @brief Human intestine
+	/// @brief Human intestine (asynchronous)
 	/// @author Jeremi Panneton
 	/// @ingroup game
     class Intestine : public Organ

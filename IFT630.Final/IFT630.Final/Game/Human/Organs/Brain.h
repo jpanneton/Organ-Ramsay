@@ -1,53 +1,48 @@
 #pragma once
 
+// Name: Brain.h
+// Author: Jérémi Panneton
+// Description: Brain organ class
+
 #include <Game/Human/Organs/Organ.h>
 
 namespace Human
 {
+	/// @brief Human brain (synchronous)
+	/// @author Jeremi Panneton
+	/// @ingroup game
     class Brain : public Organ
     {
-        class TimeManager
-        {
-        public:
-            static const size_t FPS = 60;
-
-            enum class TimeConstants : size_t
-            {
-                OneSecond = FPS,
-                HalfSecond = FPS / 2,
-                QuarterSecond = FPS / 4
-            };
-
-            void update()
-            {
-                ++m_frameCount;
-            }
-
-            bool isTime(TimeConstants time)
-            {
-                return m_frameCount % FPS == static_cast<size_t>(time);
-            }
-
-        private:
-            size_t m_frameCount = 0;
-        };
-
     public:
 		/// @brief Construct a brain in its default state (not yet started)
 		/// @param[in] body Body on which is attached the organ
         Brain(Body& body);
 
-		/// @see Organ::update
+		/// @see Read body data and trigger organs
+		/// @param[in] fps Frame rate
         void update(float fps) override;
 
-		/// @see Organ::run
+		/// @brief Task to execute asynchronously (none here)
         void run() override;
 
     private:
+		/// @see Trigger heart or not
+		/// @param[in] fps Frame rate
         bool updateHeart(float fps);
+
+		/// @see Trigger lungs or not
+		/// @param[in] fps Frame rate
         bool updateLungs(float fps);
+
+		/// @see Trigger stomach or not
+		/// @param[in] fps Frame rate
 	    bool updateStomach(float fps);
+
+		/// @see Trigger intestine or not
+		/// @param[in] fps Frame rate
 	    bool updateIntestine(float fps);
+
+		/// @see Update happiness level based on other body informations
 		void updateHappiness();
     };
 }
